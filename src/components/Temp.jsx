@@ -3,7 +3,10 @@ import axios from "axios";
 import { useState } from "react";
 
 function ResumeUpload() {
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+ 
+ // Temp.jsx - Change this line
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://ai-resume-analyzer-backend-4nqz.onrender.com";
+
   const [file, setFile] = useState(null);
   const [role, setRole] = useState("");
   const [result, setResult] = useState(null);
@@ -12,16 +15,7 @@ function ResumeUpload() {
     const formData = new FormData();
     formData.append("resume", file);
     formData.append("job_role", role);
-
-    // try {
-    //   const res = await axios.post(
-    //     "http://127.0.0.1:5000/analyze",
-    //     formData
-    //   );
-    //   setResult(res.data);
-    //   console.log("Backend Result:", res.data); // ✅ Debug-safe
-    // } 
-    
+  
       try {
       const res = await axios.post(
         `${BACKEND_URL}/analyze`,
@@ -110,3 +104,17 @@ function ResumeUpload() {
 }
 
 export default ResumeUpload;
+
+
+
+
+
+
+  // try {
+    //   const res = await axios.post(
+    //     "http://127.0.0.1:5000/analyze",
+    //     formData
+    //   );
+    //   setResult(res.data);
+    //   console.log("Backend Result:", res.data); // ✅ Debug-safe
+    // } 
